@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Dashboard - CAT Logika Matematika Berpola</title>
+    
+    <!-- Fonts & Tailwind CSS for Luxury-Minimalist layout -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0b2340',
+                        gold: '#d4a017',
+                        obsidian: '#1e293b',
+                        cream: '#fcfbfa'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cream text-obsidian min-h-screen flex flex-col font-sans selection:bg-gold selection:text-white">
+
+    <!-- HEADER -->
+    <header class="bg-navy text-white border-b-4 border-gold shadow-md">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-center sm:text-left">
+                <span class="text-xs font-semibold tracking-widest text-gold uppercase block mb-1">Bimbel Cerdas NTB &bull; Persona Research & Consulting</span>
+                <h1 class="text-xl sm:text-2xl font-bold tracking-tight">CAT LOGIKA MATEMATIKA BERPOLA</h1>
+            </div>
+            <div class="bg-gold/10 border border-gold/30 text-gold px-4 py-2 rounded-lg text-xs font-semibold tracking-wide flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                Helpdesk: 0877 425 5786
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-6 py-10">
+        
+        <!-- WELCOME CARD -->
+        <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm mb-10 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-2 h-full bg-navy"></div>
+            <h2 class="text-2xl font-bold text-navy mb-3">Master Dashboard Simulasi CAT</h2>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">
+                Selamat datang di pusat latihan resmi Computer Assisted Test (CAT). Pilih modul seri di bawah ini untuk memulai latihan soal penalaran logika matematika berpola, analisis geometri, hingga matriks angka dengan sistem penilaian otomatis.
+            </p>
+        </section>
+
+        <!-- MODULES GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- SERI 1 -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Seri 01</span>
+                        <span class="text-xs font-semibold text-gold bg-gold/10 px-2.5 py-1 rounded-md">50 Soal</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy group-hover:text-gold transition-colors mb-2">CAT Logika Matematika Berpola</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                        Latihan dasar penalaran numerik, pola angka geometris, dan aritmetika bertingkat standar seleksi formal.
+                    </p>
+                </div>
+                <a href="cat_logika_matematika_berpola.html" class="w-full bg-navy hover:bg-navy/90 text-white font-semibold py-2.5 px-4 rounded-xl text-sm text-center transition-colors shadow-sm">
+                    Mulai Simulasi Seri 1
+                </a>
+            </div>
+
+            <!-- SERI 2 -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Seri 02</span>
+                        <span class="text-xs font-semibold text-gold bg-gold/10 px-2.5 py-1 rounded-md">50 Soal</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy group-hover:text-gold transition-colors mb-2">CAT Logika Matematika Set 2</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                        Kumpulan 50 soal baru model lingkaran, segitiga, trapesium, dan segilima dengan tingkat kesulitan berjenjang.
+                    </p>
+                </div>
+                <a href="cat_logika_matematika_berpola_2.html" class="w-full bg-navy hover:bg-navy/90 text-white font-semibold py-2.5 px-4 rounded-xl text-sm text-center transition-colors shadow-sm">
+                    Mulai Simulasi Seri 2
+                </a>
+            </div>
+
+            <!-- SERI 3 -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group border-l-4 border-l-gold">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider bg-gold/10 text-gold px-3 py-1 rounded-full">Seri 03</span>
+                        <span class="text-xs font-semibold text-gold bg-gold/10 px-2.5 py-1 rounded-md">50 Soal</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy group-hover:text-gold transition-colors mb-2">CAT Logika Matematika Seri 3</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                        Simulasi khusus fokus pada format tabel matriks baris & kolom 3x3 beserta analisis pola matriks angka kompleks.
+                    </p>
+                </div>
+                <a href="cat_logika_matematika_berpola_3.html" class="w-full bg-gold hover:bg-gold/90 text-navy font-bold py-2.5 px-4 rounded-xl text-sm text-center transition-colors shadow-sm">
+                    Mulai Simulasi Seri 3
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-slate-500 text-xs">
+        <p>&copy; 2026 Persona Research & Consulting (PRC) &bull; Bimbel Cerdas NTB. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+```
+eof

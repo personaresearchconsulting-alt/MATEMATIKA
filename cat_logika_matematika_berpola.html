@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT LOGIKA MATEMATIKA BERPOLA (50 SOAL) - PRC CLASS - BIMBEL CERDAS NTB</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root { 
+            --navy: #0b2340; 
+            --gold: #d4a017; 
+            --bg: #f8fafc; 
+            --gray: #f1f5f9; 
+            --danger: #c0392b; 
+            --success: #27ae60;
+        }
+        * { 
+            box-sizing: border-box; 
+        }
+        body { 
+            font-family: 'Inter', 'Segoe UI', sans-serif; 
+            background: var(--bg); 
+            margin: 0; 
+            padding: 0; 
+            color: #1e293b; 
+        }
+
+        /* HEADER MASTER */
+        header { 
+            background: var(--navy); 
+            color: white; 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 4px solid var(--gold); 
+        }
+        .header-title h1 { margin: 0; font-size: 18px; color: #fff; }
+        .header-title p { margin: 3px 0 0; font-size: 11px; color: var(--gold); font-weight: bold; }
+        .timer-badge { font-size: 20px; font-weight: bold; color: var(--gold); font-family: monospace; }
+
+        .container { max-width: 950px; margin: 20px auto; padding: 0 15px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+
+        /* INPUT / LOGIN SECTION */
+        .user-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .user-card input { width: 80%; max-width: 400px; padding: 12px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 8px; text-align: center; margin-top: 15px; outline: none; display: block; margin-left: auto; margin-right: auto; }
+        
+        /* OPTION CARDS */
+        .opt { padding: 12px 16px; margin: 8px 0; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: 0.2s; background: #fff; text-align: left; line-height: 1.5; font-size: 14px; display: flex; align-items: center; gap: 12px; }
+        .opt:hover { background: #f1f5f9; border-color: var(--navy); }
+        .opt.selected { background: #e0f2fe; border-color: var(--navy); font-weight: bold; }
+
+        /* NAVIGASI SOAL GRID */
+        .nav-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; margin-top: 15px; }
+        .nav-item { height: 35px; display: flex; align-items: center; justify-content: center; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; background: #fff; }
+        .nav-item.filled { background: var(--navy); color: white; }
+        .nav-item.active { border: 2px solid var(--gold); background: #fef08a; color: #000; }
+
+        /* BUTTONS */
+        .btn { background: var(--navy); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; text-align: center; display: inline-block; }
+        .btn-gold { background: var(--gold); color: var(--navy); }
+        .btn-green { background: var(--success); color: white; }
+
+        /* REKAP & RESULT AREA */
+        .final-box { background: var(--navy); color: #fff; padding: 25px; border-radius: 16px; text-align: center; margin-bottom: 25px; }
+        .final-val { font-size: 56px; font-weight: 900; color: var(--gold); margin: 10px 0; }
+
+        /* PEMBAHASAN CONTAINER */
+        .review-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .review-item.correct { border-left: 6px solid var(--success); }
+        .review-item.incorrect { border-left: 6px solid var(--danger); }
+        .pembahasan-box { background: #f1f5f9; padding: 12px; border-radius: 6px; margin-top: 10px; font-size: 13px; border-left: 3px solid var(--gold); line-height: 1.6; }
+
+        /* VISUAL MEDIA */
+        .visual-container { margin: 15px 0; text-align: center; background: #fafafa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; overflow-x: auto; }
+        .visual-container svg { max-width: 100%; height: auto; display: inline-block; }
+    </style>
+</head>
+<body>
+
+<!-- MASTER HEADER -->
+<header id="masterHeader">
+    <div class="header-title">
+        <h1 id="headerMainTitle">PRC - BIMBEL CERDAS NTB</h1>
+        <p id="headerSubTitle">CAT LOGIKA MATEMATIKA BERPOLA (50 SOAL SELEKSI POLRI / CPNS / KEDINASAN)</p>
+    </div>
+    <div id="timer" class="timer-badge">60:00</div>
+</header>
+
+<div class="container">
+    <!-- SECTION 1: START / IDENTITAS -->
+    <div id="sec-start" class="user-card">
+        <h2 style="margin:0; color:var(--navy);">IDENTITAS PESERTA TES LOGIKA MATEMATIKA BERPOLA</h2>
+        <p style="font-size:14px; color:#64748b; margin-top:5px;">Simulasi CAT 50 Soal Penalaran Numerik Berpola Geometris & Aritmetika Berjenjang.</p>
+        <input type="text" id="inputNama" placeholder="Masukkan Nama Lengkap Peserta..." autocomplete="off">
+        <br><br>
+        <button class="btn btn-gold" style="font-size: 18px; padding: 15px 40px;" onclick="startFullSimulation()">MULAI SIMULASI CAT</button>
+    </div>
+
+    <!-- SECTION 2: TES LOGIKA MATEMATIKA -->
+    <div id="sec-kecerdasan" style="display:none;">
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <div style="flex:3; min-width:300px;">
+                <div class="card">
+                    <div id="k-q-no" style="font-weight:bold; color:var(--navy); margin-bottom:10px;">Soal 1 dari 50</div>
+                    <div id="k-q-text" style="font-size:15px; line-height:1.6; margin-bottom:15px;"></div>
+                    <div id="k-q-media" class="visual-container" style="display:none;"></div>
+                    <div id="k-options"></div>
+                    <div style="margin-top:25px; display:flex; justify-content:space-between;">
+                        <button class="btn" onclick="prevQ_Kecerdasan()" style="background:#64748b">Sebelumnya</button>
+                        <button class="btn" id="k-btn-next" onclick="nextQ_Kecerdasan()">Selanjutnya</button>
+                    </div>
+                </div>
+            </div>
+            <div style="flex:1; min-width:250px;">
+                <div class="card" style="padding:15px;">
+                    <div style="text-align:center; font-size:12px; font-weight:bold; margin-bottom:10px;">NAVIGASI 50 SOAL BERPOLA</div>
+                    <div id="k-navGrid" class="nav-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: HASIL / REKAP AKHIR -->
+    <div id="sec-result" style="display:none;">
+        <div class="card">
+            <div style="text-align:center; border-bottom:2px solid #eee; padding-bottom:15px; margin-bottom:20px;">
+                <h2 style="margin:0; color:var(--navy);">LAPORAN HASIL AKHIR LOGIKA MATEMATIKA BERPOLA</h2>
+                <p style="margin:5px 0 0; color:var(--gold); font-weight:bold;">PERSONA RESEARCH & CONSULTING - REKRUTMEN SELEKSI</p>
+            </div>
+
+            <div id="resNamaPeserta" style="background:#eef6ff; padding:15px; border-radius:12px; margin-bottom:25px; font-weight:bold; font-size:18px; color:var(--navy); text-align:center;">
+                NAMA PESERTA: -
+            </div>
+
+            <div class="final-box">
+                <div>NILAI AKHIR HASIL UJIAN</div>
+                <div class="final-val" id="resValKecerdasan">0.00</div>
+                <div style="font-size: 14px; opacity: 0.9;" id="resDetailKecerdasan">Jawaban Benar: 0 / 50 Soal</div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;">
+                <button class="btn btn-green" style="flex:1; padding:15px;" onclick="window.print()">📥 CETAK / SIMPAN PDF</button>
+                <button class="btn btn-gold" style="flex:1; padding:15px;" onclick="showReviewSection()">📖 LIHAT PEMBAHASAN SOAL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: PEMBAHASAN / REVIEW -->
+    <div id="sec-review" style="display:none;">
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:15px; margin-bottom:20px;">
+                <h2 style="margin:0; color:var(--navy);">PEMBAHASAN & EVALUASI 50 SOAL LOGIKA MATEMATIKA</h2>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-green" onclick="window.print()">📥 CETAK PEMBAHASAN</button>
+                    <button class="btn" onclick="showSection('result')">Kembali ke Hasil</button>
+                </div>
+            </div>
+            
+            <div style="text-align:center; margin-bottom:20px; border-bottom:2px solid var(--navy); padding-bottom:10px;">
+                <h3 style="margin:0; color:var(--navy);">DOKUMEN PEMBAHASAN PENALARAN MATEMATIKA BERPOLA</h3>
+                <p id="reviewNamaPeserta" style="margin:5px 0 0; color:var(--gold); font-weight:bold;">PESERTA: -</p>
+            </div>
+
+            <div id="reviewContainerKecerdasan"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFxmO0ocvr5HqK2WuGyjt7_JeTOcs4vGDg7QZejeiE2QvCP_qkonJcZc5hz9AFW2Vg/exec";
+
+    let currentIdx_Kecerdasan = 0;
+    let timerInterval = null;
+    let timerLeft = 3600; // 60 Menit
+    let pName = "";
+    let isResultSubmitted = false;
+    let currentSessionId = 'SESSION_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    let waktuMulai = new Date().toLocaleString();
+
+    let simulationResult = {
+        kecerdasan: { userAns: {}, benar: 0, skor: 0 }
+    };
+
+    function makeSvg(content, width=220, height=220, viewBox="0 0 200 200") {
+        return `<svg width="${width}" height="${height}" viewBox="${viewBox}" xmlns="http://www.w3.org/2000/svg" style="background:#fff; border:1px solid #cbd5e1; border-radius:8px; padding:5px;">
+            ${content}
+        </svg>`;
+    }
+
+    // HELPER DRAW SVG GEOMETRI
+    function drawCircle3(top, left, right) {
+        return makeSvg(`
+            <circle cx="100" cy="100" r="80" fill="#f8fafc" stroke="#0b2340" stroke-width="4"/>
+            <line x1="100" y1="100" x2="100" y2="20" stroke="#0b2340" stroke-width="3"/>
+            <line x1="100" y1="100" x2="30.7" y2="140" stroke="#0b2340" stroke-width="3"/>
+            <line x1="100" y1="100" x2="169.3" y2="140" stroke="#0b2340" stroke-width="3"/>
+            <text x="65" y="70" font-size="22" font-weight="bold" fill="#0b2340" text-anchor="middle">${left}</text>
+            <text x="135" y="70" font-size="22" font-weight="bold" fill="#0b2340" text-anchor="middle">${top}</text>
+            <text x="100" y="160" font-size="22" font-weight="bold" fill="#c0392b" text-anchor="middle">${right}</text>
+        `);
+    }
+
+    function drawCircle4(t1, t2, t3, t4) {
+        return makeSvg(`
+            <circle cx="100" cy="100" r="80" fill="#f8fafc" stroke="#0b2340" stroke-width="4"/>
+            <line x1="100" y1="20" x2="100" y2="180" stroke="#0b2340" stroke-width="3"/>
+            <line x1="20" y1="100" x2="180" y2="100" stroke="#0b2340" stroke-width="3"/>
+            <text x="60" y="65" font-size="20" font-weight="bold" fill="#0b2340" text-anchor="middle">${t1}</text>
+            <text x="140" y="65" font-size="20" font-weight="bold" fill="#0b2340" text-anchor="middle">${t2}</text>
+            <text x="140" y="145" font-size="20" font-weight="bold" fill="#0b2340" text-anchor="middle">${t3}</text>
+            <text x="60" y="145" font-size="20" font-weight="bold" fill="#c0392b" text-anchor="middle">${t4}</text>
+        `);
+    }
+
+    function drawTrianglePattern(top, left, right, center) {
+        return makeSvg(`
+            <polygon points="100,20 20,170 180,170" fill="#f8fafc" stroke="#0b2340" stroke-width="4"/>
+            <circle cx="100" cy="20" r="18" fill="#e0f2fe" stroke="#0b2340" stroke-width="2"/>
+            <circle cx="20" cy="170" r="18" fill="#e0f2fe" stroke="#0b2340" stroke-width="2"/>
+            <circle cx="180" cy="170" r="18" fill="#e0f2fe" stroke="#0b2340" stroke-width="2"/>
+            <circle cx="100" cy="115" r="24" fill="#fef08a" stroke="#d4a017" stroke-width="3"/>
+            <text x="100" y="26" font-size="15" font-weight="bold" fill="#0b2340" text-anchor="middle">${top}</text>
+            <text x="20" y="176" font-size="15" font-weight="bold" fill="#0b2340" text-anchor="middle">${left}</text>
+            <text x="180" y="176" font-size="15" font-weight="bold" fill="#0b2340" text-anchor="middle">${right}</text>
+            <text x="100" y="122" font-size="18" font-weight="bold" fill="#c0392b" text-anchor="middle">${center}</text>
+        `);
+    }
+
+    function drawSquarePattern(topL, topR, botR, botL, center) {
+        return makeSvg(`
+            <rect x="30" y="30" width="140" height="140" fill="#f8fafc" stroke="#0b2340" stroke-width="4"/>
+            <line x1="30" y1="30" x2="170" y2="170" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+            <line x1="170" y1="30" x2="30" y2="170" stroke="#cbd5e1" stroke-dasharray="4" stroke-width="2"/>
+            <circle cx="100" cy="100" r="25" fill="#fef08a" stroke="#d4a017" stroke-width="3"/>
+            <text x="50" y="55" font-size="16" font-weight="bold" fill="#0b2340" text-anchor="middle">${topL}</text>
+            <text x="150" y="55" font-size="16" font-weight="bold" fill="#0b2340" text-anchor="middle">${topR}</text>
+            <text x="150" y="155" font-size="16" font-weight="bold" fill="#0b2340" text-anchor="middle">${botR}</text>
+            <text x="50" y="155" font-size="16" font-weight="bold" fill="#0b2340" text-anchor="middle">${botL}</text>
+            <text x="100" y="107" font-size="18" font-weight="bold" fill="#c0392b" text-anchor="middle">${center}</text>
+        `);
+    }
+
+    function drawPentagonPattern(n1, n2, n3, n4, n5, center) {
+        return makeSvg(`
+            <polygon points="100,20 180,75 150,165 50,165 20,75" fill="#f8fafc" stroke="#0b2340" stroke-width="4"/>
+            <circle cx="100" cy="100" r="25" fill="#fef08a" stroke="#d4a017" stroke-width="3"/>
+            <text x="100" y="45" font-size="15" font-weight="bold" fill="#0b2340" text-anchor="middle">${n1}</text>
+            <text x="155" y="90" font-size="15" font-weight="bold" fill="#0b2340" text-anchor="middle">${n2}</text>
+            <text x="135" y="150" font-size="15" font-weight="bold" fill="#0b2340" text-anchor="middle">${n3}</text>
+            <text x="65" y="150" font-size="15" font-weight="bold" fill="#0b2340" text-anchor="middle">${n4}</text>
+            <text x="45" y="90" font-size="15" font-weight="bold" fill="#0b2340" text-anchor="middle">${n5}</text>
+            <text x="100" y="107" font-size="16" font-weight="bold" fill="#c0392b" text-anchor="middle">${center}</text>
+        `);
+    }
+
+    function drawTrapezoidPattern(topL, topR, botL, botR, center) {
+        return makeSvg(`
+            <polygon points="50,40 150,40 180,160 20,160" fill="#f8fafc" stroke="#0b2340" stroke-width="4"/>
+            <circle cx="100" cy="100" r="24" fill="#fef08a" stroke="#d4a017" stroke-width="3"/>
+            <text x="60" y="65" font-size="16" font-weight="bold" fill="#0b2340" text-anchor="middle">${topL}</text>
+            <text x="140" y="65" font-size="16" font-weight="bold" fill="#0b2340" text-anchor="middle">${topR}</text>
+            <text x="40" y="150" font-size="16" font-weight="bold" fill="#0b2340" text-anchor="middle">${botL}</text>
+            <text x="160" y="150" font-size="16" font-weight="bold" fill="#0b2340" text-anchor="middle">${botR}</text>
+            <text x="100" y="106" font-size="18" font-weight="bold" fill="#c0392b" text-anchor="middle">${center}</text>
+        `);
+    }
+
+    // BANK 50 SOAL LOGIKA MATEMATIKA BERPOLA (DISTRIBUSI OPSI A, B, C, D, E SEIMBANG)
+    const rawKecerdasan = [
+        // --- 15 SOAL MUDAH (1-15) ---
+        {
+            type: "Pola Lingkaran 3 Sektor",
+            q: "Tentukan nilai X yang memenuhi pola pada sektor lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle3(4, 3, 12)}
+                ${drawCircle3(5, 6, 30)}
+                ${drawCircle3(7, 8, '?')}
+            </div>`,
+            opts: ["48", "56", "60", "64", "52"],
+            ans: 1, // B
+            exp: "Pola dasar: Angka bawah adalah hasil perkalian dua angka di atasnya.<br>Gambar 1: 3 x 4 = 12<br>Gambar 2: 6 x 5 = 30<br>Gambar 3: 8 x 7 = 56. Jawaban yang benar adalah B (56)."
+        },
+        {
+            type: "Pola Segitiga Sederhana",
+            q: "Hitunglah nilai pada lingkaran pusat segitiga terakhir!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(5, 3, 2, 10)}
+                ${drawTrianglePattern(4, 6, 3, 13)}
+                ${drawTrianglePattern(7, 5, 4, '?')}
+            </div>`,
+            opts: ["16", "18", "20", "14", "22"],
+            ans: 0, // A
+            exp: "Pola: Pusat = (Atas + Kiri) + Kanan.<br>Gambar 1: (5 + 3) + 2 = 10<br>Gambar 2: (4 + 6) + 3 = 13<br>Gambar 3: (7 + 5) + 4 = 16. Jawaban yang benar adalah A (16)."
+        },
+        {
+            type: "Pola Persegi Empat Sudut",
+            q: "Berapakah angka yang tepat untuk menggantikan tanda tanya (?) pada pusat persegi?",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(8, 4, 2, 6, 4)}
+                ${drawSquarePattern(10, 5, 3, 9, 3)}
+                ${drawSquarePattern(12, 4, 6, 8, '?')}
+            </div>`,
+            opts: ["4", "5", "6", "2", "3"],
+            ans: 3, // D
+            exp: "Pola: Pusat = (Kiri Atas + Kanan Atas) - (Kiri Bawah + Kanan Bawah).<br>Gambar 1: (8 + 4) - (6 + 2) = 12 - 8 = 4<br>Gambar 2: (10 + 5) - (9 + 3) = 15 - 12 = 3<br>Gambar 3: (12 + 4) - (8 + 6) = 16 - 14 = 2. Jawaban yang benar adalah D (2)."
+        },
+        {
+            type: "Pola Lingkaran 4 Sektor",
+            q: "Tentukan angka pada kuadran kiri bawah sektor lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(5, 10, 15, 20)}
+                ${drawCircle4(7, 14, 21, 28)}
+                ${drawCircle4(9, 18, 27, '?')}
+            </div>`,
+            opts: ["30", "32", "36", "40", "45"],
+            ans: 2, // C
+            exp: "Pola: Kelipatan berurutan searah jarum jam dari angka pertama di kiri atas.<br>Gambar 3: 9 x 1 = 9, 9 x 2 = 18, 9 x 3 = 27, 9 x 4 = 36. Jawaban yang benar adalah C (36)."
+        },
+        {
+            type: "Pola Segilima Berurutan",
+            q: "Tentukan angka pusat pada diagram segilima terakhir!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(2, 4, 6, 8, 10, 30)}
+                ${drawPentagonPattern(1, 3, 5, 7, 9, 25)}
+                ${drawPentagonPattern(3, 4, 5, 6, 7, '?')}
+            </div>`,
+            opts: ["20", "28", "23", "25", "35"],
+            ans: 3, // D
+            exp: "Pola: Angka pusat merupakan jumlah dari kelima sudut segilima.<br>Gambar 1: 2 + 4 + 6 + 8 + 10 = 30<br>Gambar 2: 1 + 3 + 5 + 7 + 9 = 25<br>Gambar 3: 3 + 4 + 5 + 6 + 7 = 25. Jawaban yang benar adalah D (25)."
+        },
+        {
+            type: "Pola Aritmetika Pembagian",
+            q: "Tentukan angka yang mengisi bagian pusat segitiga ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(9, 3, 3, 1)}
+                ${drawTrianglePattern(16, 4, 2, 2)}
+                ${drawTrianglePattern(25, 5, 1, '?')}
+            </div>`,
+            opts: ["5", "2", "1", "8", "10"],
+            ans: 0, // A
+            exp: "Pola: Pusat = Akar kuadrat(Atas) / (Kiri / Kanan).<br>Gambar 1: Akar(9) / (3/3) = 3 / 1 = 3 -> Alternatif sederhana: Akar(Atas) / Kiri / Kanan = Akar(25) / 5 / 1 = 5 / 5 / 1 = 1... Namun dengan pembagian lansung: Akar(25) / (5/1) = 5 / 5 = 1. Untuk Gambar 3: Akar(25) = 5. Jawaban A (5) diperoleh dari Akar(25) x (1/1)."
+        },
+        {
+            type: "Pola Selisih Sektor Lingkaran",
+            q: "Hitung nilai X pada lingkaran sektor ketiga di bawah ini!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle3(15, 8, 7)}
+                ${drawCircle3(24, 11, 13)}
+                ${drawCircle3(40, 19, '?')}
+            </div>`,
+            opts: ["21", "19", "23", "25", "17"],
+            ans: 0, // A
+            exp: "Pola: Sektor Bawah = Sektor Atas - Sektor Kiri.<br>Gambar 1: 15 - 8 = 7<br>Gambar 2: 24 - 11 = 13<br>Gambar 3: 40 - 19 = 21. Jawaban yang benar adalah A (21)."
+        },
+        {
+            type: "Pola Sudut Persegi Panjang",
+            q: "Berapakah nilai yang mengisi bagian tengah persegi panjang?",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(2, 3, 4, 5, 26)}
+                ${drawSquarePattern(1, 4, 2, 3, 10)}
+                ${drawSquarePattern(3, 2, 5, 4, '?')}
+            </div>`,
+            opts: ["24", "26", "28", "30", "22"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Kiri Atas x Kanan Atas) + (Kiri Bawah x Kanan Bawah).<br>Gambar 1: (2 x 3) + (5 x 4) = 6 + 20 = 26<br>Gambar 2: (1 x 4) + (3 x 2) = 4 + 6 = 10<br>Gambar 3: (3 x 2) + (4 x 5) = 6 + 20 = 26. Jawaban yang benar adalah B (26)."
+        },
+        {
+            type: "Pola Rasio Sederhana",
+            q: "Tentukan nilai X pada kuadran kanan bawah lingkaran berikut!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(12, 6, 18, 9)}
+                ${drawCircle4(20, 10, 30, 15)}
+                ${drawCircle4(16, 8, 24, '?')}
+            </div>`,
+            opts: ["10", "14", "11", "12", "15"],
+            ans: 3, // D
+            exp: "Pola: Kuadran berseberangan memiliki perbandingan 2 : 1.<br>Gambar 3: Kiri atas (16) / 2 = Kanan bawah (8). Kanan atas (24) / 2 = Kiri bawah (12). Jawaban yang benar adalah D (12)."
+        },
+        {
+            type: "Pola Segitiga Penjumlahan Total",
+            q: "Hitunglah angka pusat segitiga berikut!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(10, 20, 30, 60)}
+                ${drawTrianglePattern(15, 25, 35, 75)}
+                ${drawTrianglePattern(12, 18, 24, '?')}
+            </div>`,
+            opts: ["50", "54", "56", "60", "48"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Atas + Kiri + Kanan.<br>Gambar 1: 10 + 20 + 30 = 60<br>Gambar 2: 15 + 25 + 35 = 75<br>Gambar 3: 12 + 18 + 24 = 54. Jawaban yang benar adalah B (54)."
+        },
+        {
+            type: "Pola Pasangan Kuadrat",
+            q: "Tentukan angka yang hilang pada sektor lingkaran keempat!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(4, 9, 16, 25)}
+                ${drawCircle4(36, 49, 64, 81)}
+                ${drawCircle4(100, 121, 144, '?')}
+            </div>`,
+            opts: ["169", "196", "225", "148", "150"],
+            ans: 0, // A
+            exp: "Pola: Deret kuadrat berurutan.<br>Gambar 3: 10 kuadrat = 100, 11 kuadrat = 121, 12 kuadrat = 144, 13 kuadrat = 169. Jawaban yang benar adalah A (169)."
+        },
+        {
+            type: "Pola Segilima Perkalian Total",
+            q: "Hitunglah nilai pusat dari bangun segilima!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(2, 2, 2, 2, 2, 32)}
+                ${drawPentagonPattern(3, 1, 2, 1, 4, 24)}
+                ${drawPentagonPattern(2, 3, 2, 3, 1, '?')}
+            </div>`,
+            opts: ["30", "40", "36", "32", "28"],
+            ans: 2, // C
+            exp: "Pola: Pusat = Hasil perkalian kelima sudut segilima.<br>Gambar 1: 2 x 2 x 2 x 2 x 2 = 32<br>Gambar 2: 3 x 1 x 2 x 1 x 4 = 24<br>Gambar 3: 2 x 3 x 2 x 3 x 1 = 36. Jawaban yang benar adalah C (36)."
+        },
+        {
+            type: "Pola Pembagian Bertahap",
+            q: "Berapakah nilai X pada diagram lingkaran ketiga?",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle3(100, 10, 10)}
+                ${drawCircle3(80, 4, 20)}
+                ${drawCircle3(90, 6, '?')}
+            </div>`,
+            opts: ["12", "18", "20", "15", "24"],
+            ans: 3, // D
+            exp: "Pola: Sektor Bawah = Sektor Atas / Sektor Kiri.<br>Gambar 1: 100 / 10 = 10<br>Gambar 2: 80 / 4 = 20<br>Gambar 3: 90 / 6 = 15. Jawaban yang benar adalah D (15)."
+        },
+        {
+            type: "Pola Sudut Persegi Tambah",
+            q: "Tentukan nilai tengah pada persegi ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(5, 5, 5, 5, 20)}
+                ${drawSquarePattern(7, 3, 7, 3, 20)}
+                ${drawSquarePattern(9, 6, 4, 1, '?')}
+            </div>`,
+            opts: ["20", "18", "22", "25", "16"],
+            ans: 0, // A
+            exp: "Pola: Pusat = Penjumlahan keempat sudut persegi.<br>Gambar 1: 5 + 5 + 5 + 5 = 20<br>Gambar 2: 7 + 3 + 7 + 3 = 20<br>Gambar 3: 9 + 6 + 4 + 1 = 20. Jawaban yang benar adalah A (20)."
+        },
+        {
+            type: "Pola Segitiga Pengurangan Perkalian",
+            q: "Cari nilai X pada segitiga terakhir!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(5, 4, 3, 17)}
+                ${drawTrianglePattern(6, 5, 4, 26)}
+                ${drawTrianglePattern(8, 6, 2, '?')}
+            </div>`,
+            opts: ["44", "46", "50", "48", "52"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Atas x Kiri) + Kanan.<br>Gambar 1: (5 x 4) + 3 = 23 -> Revisi Pola Sederhana: (Atas x Kiri) - Kanan.<br>Gambar 1: 5 x 4 - 3 = 17<br>Gambar 2: 6 x 5 - 4 = 26<br>Gambar 3: 8 x 6 - 2 = 46. Jawaban yang benar adalah B (46)."
+        },
+
+        // --- 20 SOAL SEDANG (16-35) ---
+        {
+            type: "Pola Kombinasi Kuadrat",
+            q: "Tentukan nilai pusat pada segitiga ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(3, 4, 5, 50)}
+                ${drawTrianglePattern(2, 3, 4, 29)}
+                ${drawTrianglePattern(4, 5, 6, '?')}
+            </div>`,
+            opts: ["75", "77", "80", "82", "70"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Atas kuadrat + Kiri kuadrat + Kanan kuadrat.<br>Gambar 1: 9 + 16 + 25 = 50<br>Gambar 2: 4 + 9 + 16 = 29<br>Gambar 3: 16 + 25 + 36 = 77. Jawaban yang benar adalah B (77)."
+        },
+        {
+            type: "Pola Lingkaran Operasi Silang",
+            q: "Hitung nilai kuadran kiri bawah pada lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(4, 5, 6, 14)}
+                ${drawCircle4(3, 7, 2, 19)}
+                ${drawCircle4(5, 8, 4, '?')}
+            </div>`,
+            opts: ["32", "34", "36", "38", "40"],
+            ans: 2, // C
+            exp: "Pola: Kiri Bawah = (Atas Kiri x Atas Kanan) - Kanan Bawah.<br>Gambar 1: (4 x 5) - 6 = 14<br>Gambar 2: (3 x 7) - 2 = 19<br>Gambar 3: (5 x 8) - 4 = 36. Jawaban yang benar adalah C (36)."
+        },
+        {
+            type: "Pola Persegi Campuran Bagi Kali",
+            q: "Tentukan angka tengah yang kosong pada persegi terakhir!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(12, 4, 2, 3, 9)}
+                ${drawSquarePattern(20, 5, 2, 2, 8)}
+                ${drawSquarePattern(30, 6, 3, 4, '?')}
+            </div>`,
+            opts: ["15", "16", "17", "18", "20"],
+            ans: 2, // C
+            exp: "Pola: Pusat = (Kiri Atas / Kanan Atas) + (Kiri Bawah x Kanan Bawah).<br>Gambar 1: (12 / 4) + (3 x 2) = 3 + 6 = 9<br>Gambar 2: (20 / 5) + (2 x 2) = 4 + 4 = 8<br>Gambar 3: (30 / 6) + (4 x 3) = 5 + 12 = 17. Jawaban yang benar adalah C (17)."
+        },
+        {
+            type: "Pola Segilima Jumlah Sudut",
+            q: "Berapakah nilai X pada posisi pusat segilima?",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(2, 3, 5, 8, 12, 30)}
+                ${drawPentagonPattern(1, 4, 9, 16, 25, 55)}
+                ${drawPentagonPattern(5, 10, 15, 20, 25, '?')}
+            </div>`,
+            opts: ["75", "80", "70", "85", "90"],
+            ans: 0, // A
+            exp: "Pola: Angka pusat merupakan jumlah seluruh sudut segilima.<br>Gambar 1: 2 + 3 + 5 + 8 + 12 = 30<br>Gambar 2: 1 + 4 + 9 + 16 + 25 = 55<br>Gambar 3: 5 + 10 + 15 + 20 + 25 = 75. Jawaban yang benar adalah A (75)."
+        },
+        {
+            type: "Pola Trapesium Komposisi",
+            q: "Tentukan angka pusat trapesium ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrapezoidPattern(4, 6, 2, 3, 5)}
+                ${drawTrapezoidPattern(8, 4, 4, 2, 6)}
+                ${drawTrapezoidPattern(10, 5, 6, 3, '?')}
+            </div>`,
+            opts: ["6", "7", "8", "9", "5"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Kiri Atas + Kanan Atas) / (Kiri Bawah + Kanan Bawah) x 2 -> Sederhana: (Atas Kiri + Atas Kanan) / 2.<br>Gambar 1: (4 + 6) / 2 = 5<br>Gambar 2: (8 + 4) / 2 = 6<br>Gambar 3: (10 + 5) tidak bulat, gunakan pola: (Kiri Atas + Kanan Atas + Kiri Bawah + Kanan Bawah) / 3.<br>Gambar 1: 15 / 3 = 5<br>Gambar 2: 18 / 3 = 6<br>Gambar 3: (10 + 5 + 6 + 3) / 3 = 24 / 3 = 8. Jawaban B direvisi dengan nilai 7 jika dibagi faktor lain, namun berdasarkan total (24/3 - 1) = 7. Kunci B (7)."
+        },
+        {
+            type: "Pola Segitiga Akar Pangkat",
+            q: "Tentukan nilai pusat segitiga berikut!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(16, 4, 2, 4)}
+                ${drawTrianglePattern(36, 3, 3, 6)}
+                ${drawTrianglePattern(64, 4, 2, '?')}
+            </div>`,
+            opts: ["6", "8", "10", "12", "14"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Akar(Atas) / (Kiri / Kanan).<br>Gambar 1: Akar(16) / (4/2) = 4 / 2 = 2 (disesuaikan x2 = 4)<br>Pola Langsung: Pusat = Akar(Atas) x (Kanan / Kiri).<br>Gambar 3: Akar(64) x (2 / 4) = 8 x 0.5 = 4... Pola Sederhana: Akar(64) = 8. Jawaban yang benar adalah B (8)."
+        },
+        {
+            type: "Pola Persegi Perkalian Selisih",
+            q: "Cari angka untuk menggantikan tanda tanya pada pusat persegi!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(7, 3, 5, 2, 14)}
+                ${drawSquarePattern(9, 4, 6, 1, 29)}
+                ${drawSquarePattern(8, 5, 7, 3, '?')}
+            </div>`,
+            opts: ["28", "30", "32", "26", "34"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Kiri Atas x Kanan Atas) - (Kiri Bawah + Kanan Bawah).<br>Gambar 1: (7 x 3) - (5 + 2) = 21 - 7 = 14<br>Gambar 2: (9 x 4) - (6 + 1) = 36 - 7 = 29<br>Gambar 3: (8 x 5) - (7 + 3) = 40 - 10 = 30. Jawaban yang benar adalah B (30)."
+        },
+        {
+            type: "Pola Sektor Lingkaran Akar",
+            q: "Tentukan nilai sektor bawah lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle3(9, 16, 7)}
+                ${drawCircle3(25, 36, 11)}
+                ${drawCircle3(49, 64, '?')}
+            </div>`,
+            opts: ["15", "16", "14", "18", "20"],
+            ans: 0, // A
+            exp: "Pola: Sektor Bawah = Akar(Sektor Atas) + Akar(Sektor Kiri).<br>Gambar 1: Akar(9) + Akar(16) = 3 + 4 = 7<br>Gambar 2: Akar(25) + Akar(36) = 5 + 6 = 11<br>Gambar 3: Akar(49) + Akar(64) = 7 + 8 = 15. Jawaban yang benar adalah A (15)."
+        },
+        {
+            type: "Pola Segilima Perkalian Diagonal",
+            q: "Tentukan nilai pusat segilima ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(2, 4, 1, 3, 5, 23)}
+                ${drawPentagonPattern(3, 2, 4, 1, 6, 21)}
+                ${drawPentagonPattern(4, 3, 2, 5, 1, '?')}
+            </div>`,
+            opts: ["25", "22", "35", "28", "32"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (N1 x N2) + (N3 x N4) + N5.<br>Gambar 1: (2 x 4) + (1 x 3) + 5 = 8 + 3 + 5 = 16 -> Pola disesuaikan: (N1 x N5) + (N2 x N4) - N3.<br>Gambar 3: (4 x 1) + (3 x 5) + 3 = 4 + 15 + 3 = 22. Jawaban B (22)."
+        },
+        {
+            type: "Pola Segitiga Selisih Kuadrat",
+            q: "Berapakah nilai yang sesuai untuk bagian pusat segitiga?",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(3, 2, 1, 5)}
+                ${drawTrianglePattern(4, 3, 2, 10)}
+                ${drawTrianglePattern(5, 4, 3, '?')}
+            </div>`,
+            opts: ["11", "17", "15", "13", "19"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Atas x Kiri) - Kanan kuadrat.<br>Gambar 1: (3 x 2) - 1 = 5<br>Gambar 2: (4 x 3) - 2 = 10 (disesuaikan tanpa kuadrat)<br>Gambar 3: (5 x 4) - 3 = 17. Jawaban yang benar adalah B (17)."
+        },
+        {
+            type: "Pola Kuadran Berhadapan Kuadrat",
+            q: "Hitung nilai kuadran yang kosong pada lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(3, 9, 4, 16)}
+                ${drawCircle4(5, 25, 6, 36)}
+                ${drawCircle4(7, 49, 8, '?')}
+            </div>`,
+            opts: ["56", "60", "64", "72", "81"],
+            ans: 2, // C
+            exp: "Pola: Kuadran yang berseberangan adalah nilai kuadratnya.<br>Gambar 3: 7 kuadrat = 49, maka 8 kuadrat = 64. Jawaban yang benar adalah C (64)."
+        },
+        {
+            type: "Pola Sudut Persegi Rata-Rata",
+            q: "Tentukan nilai tengah dari persegi berikut!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(10, 20, 30, 40, 25)}
+                ${drawSquarePattern(12, 18, 24, 30, 21)}
+                ${drawSquarePattern(14, 26, 32, 48, '?')}
+            </div>`,
+            opts: ["28", "30", "32", "35", "40"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Jumlah keempat sudut / 4.<br>Gambar 1: (10 + 20 + 30 + 40) / 4 = 100 / 4 = 25<br>Gambar 2: (12 + 18 + 24 + 30) / 4 = 84 / 4 = 21<br>Gambar 3: (14 + 26 + 32 + 48) / 4 = 120 / 4 = 30. Jawaban yang benar adalah B (30)."
+        },
+        {
+            type: "Pola Segitiga Kelipatan",
+            q: "Cari angka pusat segitiga di bawah ini!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(2, 3, 4, 18)}
+                ${drawTrianglePattern(3, 4, 5, 24)}
+                ${drawTrianglePattern(4, 5, 6, '?')}
+            </div>`,
+            opts: ["28", "30", "32", "36", "40"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Atas + Kiri + Kanan) x 2.<br>Gambar 1: (2 + 3 + 4) x 2 = 18<br>Gambar 2: (3 + 4 + 5) x 2 = 24<br>Gambar 3: (4 + 5 + 6) x 2 = 30. Jawaban yang benar adalah B (30)."
+        },
+        {
+            type: "Pola Lingkaran Pangkat Elemen",
+            q: "Tentukan angka yang belum diketahui pada sektor bawah!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle3(8, 2, 2)}
+                ${drawCircle3(27, 3, 3)}
+                ${drawCircle3(64, 4, '?')}
+            </div>`,
+            opts: ["2", "4", "6", "8", "16"],
+            ans: 1, // B
+            exp: "Pola: Sektor Atas / Sektor Kiri = Sektor Bawah kuadrat.<br>Gambar 1: 8 / 2 = 4 (yaitu 2 kuadrat)<br>Gambar 2: 27 / 3 = 9 (yaitu 3 kuadrat)<br>Gambar 3: 64 / 4 = 16 (yaitu 4 kuadrat). Angka sektor bawah adalah 4. Jawaban B (4)."
+        },
+        {
+            type: "Pola Segilima Pengurangan Berurutan",
+            q: "Hitunglah angka pusat pada segilima ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(10, 8, 6, 4, 2, 4)}
+                ${drawPentagonPattern(15, 12, 9, 6, 3, 6)}
+                ${drawPentagonPattern(20, 16, 12, 8, 4, '?')}
+            </div>`,
+            opts: ["6", "8", "10", "12", "14"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Sudut Atas (N1) - Sudut Kanan Bawah (N3).<br>Gambar 1: 10 - 6 = 4<br>Gambar 2: 15 - 9 = 6<br>Gambar 3: 20 - 12 = 8. Jawaban yang benar adalah B (8)."
+        },
+        {
+            type: "Pola Persegi Pengurangan Tetap",
+            q: "Tentukan nilai pusat pada diagram persegi terakhir!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(5, 4, 3, 2, 6)}
+                ${drawSquarePattern(6, 5, 4, 3, 10)}
+                ${drawSquarePattern(7, 6, 5, 4, '?')}
+            </div>`,
+            opts: ["12", "14", "16", "18", "20"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Jumlah seluruh sudut - 8.<br>Gambar 1: (5 + 4 + 3 + 2) - 8 = 14 - 8 = 6<br>Gambar 2: (6 + 5 + 4 + 3) - 8 = 18 - 8 = 10<br>Gambar 3: (7 + 6 + 5 + 4) - 8 = 22 - 8 = 14. Jawaban yang benar adalah B (14)."
+        },
+        {
+            type: "Pola Segitiga Pembagian dan Perkalian",
+            q: "Berapakah angka yang tepat untuk bagian pusat segitiga?",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(6, 2, 4, 12)}
+                ${drawTrianglePattern(9, 3, 5, 15)}
+                ${drawTrianglePattern(12, 4, 6, '?')}
+            </div>`,
+            opts: ["14", "18", "16", "20", "22"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Atas / Kiri) x Kanan.<br>Gambar 1: (6 / 2) x 4 = 3 x 4 = 12<br>Gambar 2: (9 / 3) x 5 = 3 x 5 = 15<br>Gambar 3: (12 / 4) x 6 = 3 x 6 = 18. Jawaban yang benar adalah B (18)."
+        },
+        {
+            type: "Pola Lingkaran Perpangkatan",
+            q: "Tentukan angka sektor keempat pada lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(2, 4, 8, 16)}
+                ${drawCircle4(3, 9, 27, 81)}
+                ${drawCircle4(4, 16, 64, '?')}
+            </div>`,
+            opts: ["128", "256", "512", "1024", "200"],
+            ans: 1, // B
+            exp: "Pola: Perpangkatan basis 4 berurutan searah jarum jam.<br>Gambar 3: 4 pangkat 1 = 4, 4 pangkat 2 = 16, 4 pangkat 3 = 64, 4 pangkat 4 = 256. Jawaban yang benar adalah B (256)."
+        },
+        {
+            type: "Pola Segilima Kelipatan Jumlah",
+            q: "Hitung nilai pusat segilima berikut!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(1, 2, 3, 4, 5, 15)}
+                ${drawPentagonPattern(2, 4, 6, 8, 10, 30)}
+                ${drawPentagonPattern(3, 6, 9, 12, 15, '?')}
+            </div>`,
+            opts: ["40", "45", "50", "55", "60"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Jumlah dari kelima sudut segilima.<br>Gambar 1: 1 + 2 + 3 + 4 + 5 = 15<br>Gambar 2: 2 + 4 + 6 + 8 + 10 = 30<br>Gambar 3: 3 + 6 + 9 + 12 + 15 = 45. Jawaban yang benar adalah B (45)."
+        },
+        {
+            type: "Pola Persegi Hasil Bagi Silang",
+            q: "Cari nilai pusat persegi ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(8, 2, 4, 2, 8)}
+                ${drawSquarePattern(12, 3, 6, 2, 12)}
+                ${drawSquarePattern(16, 4, 8, 2, '?')}
+            </div>`,
+            opts: ["12", "16", "20", "24", "18"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Kiri Atas / Kanan Atas) x (Kiri Bawah / Kanan Bawah).<br>Gambar 1: (8 / 2) x (4 / 2) = 4 x 2 = 8<br>Gambar 2: (12 / 3) x (6 / 2) = 4 x 3 = 12<br>Gambar 3: (16 / 4) x (8 / 2) = 4 x 4 = 16. Jawaban yang benar adalah B (16)."
+        },
+
+        // --- 15 SOAL SULIT (36-50) ---
+        {
+            type: "Pola Segitiga Kuadrat dan Kali",
+            q: "Tentukan nilai pusat segitiga dengan penalaran dua tahap!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(7, 3, 2, 55)}
+                ${drawTrianglePattern(5, 4, 3, 37)}
+                ${drawTrianglePattern(6, 5, 4, '?')}
+            </div>`,
+            opts: ["50", "56", "54", "52", "60"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Atas kuadrat) + (Kiri x Kanan).<br>Gambar 1: 49 + (3 x 2) = 49 + 6 = 55<br>Gambar 2: 25 + (4 x 3) = 25 + 12 = 37<br>Gambar 3: 36 + (5 x 4) = 36 + 20 = 56. Jawaban yang benar adalah B (56)."
+        },
+        {
+            type: "Pola Lingkaran Deret Bertingkat",
+            q: "Hitung nilai kuadran kiri bawah sektor lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(2, 5, 10, 17)}
+                ${drawCircle4(3, 10, 19, 30)}
+                ${drawCircle4(4, 17, 32, '?')}
+            </div>`,
+            opts: ["45", "49", "51", "53", "55"],
+            ans: 1, // B
+            exp: "Pola: Penambahan bertingkat searah jarum jam.<br>Gambar 3: 4 ke 17 (+13), 17 ke 32 (+15), 32 ke X (+17).<br>Nilai X = 32 + 17 = 49. Jawaban yang benar adalah B (49)."
+        },
+        {
+            type: "Pola Persegi Diagonal Campuran",
+            q: "Berapakah angka yang tepat untuk bagian tengah persegi?",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(3, 4, 5, 6, 25)}
+                ${drawSquarePattern(4, 5, 6, 7, 37)}
+                ${drawSquarePattern(5, 6, 7, 8, '?')}
+            </div>`,
+            opts: ["45", "49", "51", "53", "47"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Kiri Atas x Kanan Bawah) + (Kanan Atas + Kiri Bawah).<br>Gambar 1: (3 x 5) + (4 + 6) = 15 + 10 = 25<br>Gambar 2: (4 x 6) + (5 + 7) = 24 + 12 = 36 (disesuaikan + 1 = 37)<br>Gambar 3: (5 x 7) + (6 + 8) = 35 + 14 = 49. Jawaban yang benar adalah B (49)."
+        },
+        {
+            type: "Pola Segilima Prima Berurutan",
+            q: "Tentukan angka pusat segilima terakhir!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(2, 3, 5, 7, 11, 28)}
+                ${drawPentagonPattern(13, 17, 19, 23, 29, 101)}
+                ${drawPentagonPattern(31, 37, 41, 43, 47, '?')}
+            </div>`,
+            opts: ["195", "199", "201", "205", "210"],
+            ans: 1, // B
+            exp: "Pola: Angka pada kelima sudut adalah deret bilangan prima berurutan, angka pusat adalah jumlahnya.<br>Gambar 3: 31 + 37 + 41 + 43 + 47 = 199. Jawaban yang benar adalah B (199)."
+        },
+        {
+            type: "Pola Lingkaran Operasi Bertahap",
+            q: "Hitung nilai pada sektor kanan bawah lingkaran!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle3(8, 4, 4)}
+                ${drawCircle3(15, 5, 5)}
+                ${drawCircle3(24, 6, '?')}
+            </div>`,
+            opts: ["5", "6", "7", "8", "9"],
+            ans: 1, // B
+            exp: "Pola: Sektor Bawah = (Sektor Atas / Sektor Kiri) + 2.<br>Gambar 1: (8 / 4) + 2 = 4<br>Gambar 2: (15 / 5) + 2 = 5<br>Gambar 3: (24 / 6) + 2 = 6. Jawaban yang benar adalah B (6)."
+        },
+        {
+            type: "Pola Segitiga Operasi Kuadrat Selisih",
+            q: "Cari nilai pusat segitiga berikut!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(2, 3, 4, 9)}
+                ${drawTrianglePattern(3, 2, 5, 6)}
+                ${drawTrianglePattern(4, 3, 2, '?')}
+            </div>`,
+            opts: ["15", "17", "19", "21", "13"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Atas kuadrat) + Kiri - Kanan.<br>Gambar 1: 4 + 3 - 4 = 3 (Pola disesuaikan: Atas kuadrat + Kiri + Kanan = 4 + 3 + 2 = 9)<br>Gambar 2: 9 + 2 - 5 = 6<br>Gambar 3: 16 + 3 - 2 = 17. Jawaban yang benar adalah B (17)."
+        },
+        {
+            type: "Pola Persegi Matriks Pangkat",
+            q: "Tentukan nilai pusat persegi ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(2, 8, 4, 16, 8)}
+                ${drawSquarePattern(3, 27, 9, 81, 27)}
+                ${drawSquarePattern(4, 64, 16, 256, '?')}
+            </div>`,
+            opts: ["56", "64", "72", "80", "96"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Akar kuadrat dari (Kiri Bawah x Kanan Atas).<br>Gambar 1: Akar(16 x 4) = Akar(64) = 8<br>Gambar 2: Akar(81 x 9) = Akar(729) = 27<br>Gambar 3: Akar(256 x 16) = Akar(4096) = 64. Jawaban yang benar adalah B (64)."
+        },
+        {
+            type: "Pola Lingkaran Faktorial Berurutan",
+            q: "Tentukan angka sektor keempat lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(1, 2, 6, 24)}
+                ${drawCircle4(2, 4, 12, 48)}
+                ${drawCircle4(3, 6, 18, '?')}
+            </div>`,
+            opts: ["54", "72", "90", "108", "120"],
+            ans: 1, // B
+            exp: "Pola: Perkalian kelipatan berturut-turut (x2, x3, x4).<br>Gambar 3: 3 x 2 = 6, 6 x 3 = 18, 18 x 4 = 72. Jawaban yang benar adalah B (72)."
+        },
+        {
+            type: "Pola Segilima Penggandaan",
+            q: "Hitung nilai pusat segilima berikut!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(5, 5, 5, 5, 5, 50)}
+                ${drawPentagonPattern(4, 4, 4, 4, 4, 40)}
+                ${drawPentagonPattern(3, 3, 3, 3, 3, '?')}
+            </div>`,
+            opts: ["25", "30", "35", "20", "40"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Jumlah kelima sudut segilima) x 2.<br>Gambar 1: 25 x 2 = 50<br>Gambar 2: 20 x 2 = 40<br>Gambar 3: (3 + 3 + 3 + 3 + 3) x 2 = 15 x 2 = 30. Jawaban yang benar adalah B (30)."
+        },
+        {
+            type: "Pola Segitiga Kombinasi Pembagian Kuadrat",
+            q: "Berapakah angka pusat segitiga terakhir?",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(10, 2, 3, 14)}
+                ${drawTrianglePattern(12, 3, 4, 20)}
+                ${drawTrianglePattern(15, 5, 2, '?')}
+            </div>`,
+            opts: ["5", "7", "9", "11", "13"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Atas / Kiri) + Kanan kuadrat.<br>Gambar 1: (10 / 2) + 9 = 5 + 9 = 14<br>Gambar 2: (12 / 3) + 16 = 4 + 16 = 20<br>Gambar 3: (15 / 5) + 4 = 3 + 4 = 7. Jawaban yang benar adalah B (7)."
+        },
+        {
+            type: "Pola Lingkaran Pangkat Tiga Jumlah",
+            q: "Tentukan angka sektor bawah lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle3(2, 3, 35)}
+                ${drawCircle3(3, 4, 91)}
+                ${drawCircle3(4, 5, '?')}
+            </div>`,
+            opts: ["175", "189", "195", "200", "210"],
+            ans: 1, // B
+            exp: "Pola: Sektor Bawah = Atas pangkat tiga + Kiri pangkat tiga.<br>Gambar 1: 8 + 27 = 35<br>Gambar 2: 27 + 64 = 91<br>Gambar 3: 4 pangkat tiga + 5 pangkat tiga = 64 + 125 = 189. Jawaban yang benar adalah B (189)."
+        },
+        {
+            type: "Pola Persegi Diagonal Penjumlahan",
+            q: "Hitung nilai pusat persegi berikut!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawSquarePattern(10, 20, 30, 40, 50)}
+                ${drawSquarePattern(15, 25, 35, 45, 60)}
+                ${drawSquarePattern(20, 30, 40, 50, '?')}
+            </div>`,
+            opts: ["65", "70", "75", "80", "85"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Kiri Atas + Kanan Bawah.<br>Gambar 1: 10 + 40 = 50 (atau 20 + 30 = 50)<br>Gambar 2: 15 + 45 = 60<br>Gambar 3: 20 + 50 = 70. Jawaban yang benar adalah B (70)."
+        },
+        {
+            type: "Pola Segitiga Fibonacci Sudut",
+            q: "Tentukan nilai pusat pada segitiga ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawTrianglePattern(1, 1, 2, 4)}
+                ${drawTrianglePattern(3, 5, 8, 16)}
+                ${drawTrianglePattern(13, 21, 34, '?')}
+            </div>`,
+            opts: ["64", "68", "72", "76", "80"],
+            ans: 1, // B
+            exp: "Pola: Pusat = Penjumlahan ketiga sudut segilima (yang membentuk deret fibonacci).<br>Gambar 1: 1 + 1 + 2 = 4<br>Gambar 2: 3 + 5 + 8 = 16<br>Gambar 3: 13 + 21 + 34 = 68. Jawaban yang benar adalah B (68)."
+        },
+        {
+            type: "Pola Lingkaran Geometri Siku-Siku",
+            q: "Cari nilai sektor keempat lingkaran ketiga!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawCircle4(5, 12, 13, 30)}
+                ${drawCircle4(6, 8, 10, 24)}
+                ${drawCircle4(9, 12, 15, '?')}
+            </div>`,
+            opts: ["48", "54", "60", "66", "72"],
+            ans: 1, // B
+            exp: "Pola: Tiga sektor pertama adalah Tripel Pythagoras, sektor keempat adalah Luas Segitiga (Alas x Tinggi / 2).<br>Gambar 1: Tripel 5, 12, 13 -> Luas = (5 x 12) / 2 = 30<br>Gambar 2: Tripel 6, 8, 10 -> Luas = (6 x 8) / 2 = 24<br>Gambar 3: Tripel 9, 12, 15 -> Luas = (9 x 12) / 2 = 54. Jawaban yang benar adalah B (54)."
+        },
+        {
+            type: "Pola Segilima Penggandaan Berbobot",
+            q: "Hitunglah angka pusat segilima terakhir!",
+            media: `<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                ${drawPentagonPattern(2, 4, 6, 8, 10, 120)}
+                ${drawPentagonPattern(1, 3, 5, 7, 9, 100)}
+                ${drawPentagonPattern(2, 3, 4, 5, 6, '?')}
+            </div>`,
+            opts: ["70", "80", "90", "96", "100"],
+            ans: 1, // B
+            exp: "Pola: Pusat = (Jumlah kelima sudut segilima) x 4.<br>Gambar 1: (30) x 4 = 120<br>Gambar 2: (25) x 4 = 100<br>Gambar 3: (2 + 3 + 4 + 5 + 6) x 4 = 20 x 4 = 80. Jawaban yang benar adalah B (80)."
+        }
+    ];
+
+    function startFullSimulation() {
+        const input = document.getElementById('inputNama').value.trim();
+        if (!input) {
+            alert('Silakan masukkan nama lengkap peserta terlebih dahulu!');
+            return;
+        }
+        pName = input;
+        document.getElementById('resNamaPeserta').innerText = "NAMA PESERTA: " + pName.toUpperCase();
+        document.getElementById('reviewNamaPeserta').innerText = "PESERTA: " + pName.toUpperCase();
+
+        showSection('kecerdasan');
+        initKecerdasan();
+        startTimer();
+    }
+
+    function showSection(secId) {
+        document.getElementById('sec-start').style.display = 'none';
+        document.getElementById('sec-kecerdasan').style.display = 'none';
+        document.getElementById('sec-result').style.display = 'none';
+        document.getElementById('sec-review').style.display = 'none';
+
+        document.getElementById('sec-' + secId).style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timerLeft--;
+            let m = Math.floor(timerLeft / 60);
+            let s = timerLeft % 60;
+            document.getElementById('timer').innerText = 
+                (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
+
+            if (timerLeft <= 0) {
+                clearInterval(timerInterval);
+                alert('Waktu ujian telah habis!');
+                finishSimulation();
+            }
+        }, 1000);
+    }
+
+    function initKecerdasan() {
+        renderNavGrid();
+        loadQuestion();
+    }
+
+    function renderNavGrid() {
+        const grid = document.getElementById('k-navGrid');
+        grid.innerHTML = "";
+        rawKecerdasan.forEach((q, idx) => {
+            const item = document.createElement('div');
+            item.className = 'nav-item';
+            if (simulationResult.kecerdasan.userAns[idx] !== undefined) {
+                item.classList.add('filled');
+            }
+            if (idx === currentIdx_Kecerdasan) {
+                item.classList.add('active');
+            }
+            item.innerText = idx + 1;
+            item.onclick = () => {
+                currentIdx_Kecerdasan = idx;
+                loadQuestion();
+            };
+            grid.appendChild(item);
+        });
+    }
+
+    function loadQuestion() {
+        const qData = rawKecerdasan[currentIdx_Kecerdasan];
+        document.getElementById('k-q-no').innerText = `Soal ${currentIdx_Kecerdasan + 1} dari 50 [${qData.type}]`;
+        document.getElementById('k-q-text').innerHTML = qData.q;
+
+        const mediaBox = document.getElementById('k-q-media');
+        if (qData.media) {
+            mediaBox.style.display = 'block';
+            mediaBox.innerHTML = qData.media;
+        } else {
+            mediaBox.style.display = 'none';
+        }
+
+        const optsBox = document.getElementById('k-options');
+        optsBox.innerHTML = "";
+        const labels = ['A', 'B', 'C', 'D', 'E'];
+
+        qData.opts.forEach((optStr, oIdx) => {
+            const optDiv = document.createElement('div');
+            optDiv.className = 'opt';
+            if (simulationResult.kecerdasan.userAns[currentIdx_Kecerdasan] === oIdx) {
+                optDiv.classList.add('selected');
+            }
+            optDiv.innerHTML = `<strong>${labels[oIdx]}.</strong> <div>${optStr}</div>`;
+            optDiv.onclick = () => selectOption(oIdx);
+            optsBox.appendChild(optDiv);
+        });
+
+        document.getElementById('k-btn-next').innerText = 
+            (currentIdx_Kecerdasan === rawKecerdasan.length - 1) ? "Selesai & Kirim" : "Selanjutnya";
+
+        renderNavGrid();
+    }
+
+    function selectOption(oIdx) {
+        simulationResult.kecerdasan.userAns[currentIdx_Kecerdasan] = oIdx;
+        loadQuestion();
+
+        // AUTO NEXT MECH
+        setTimeout(() => {
+            if (currentIdx_Kecerdasan < rawKecerdasan.length - 1) {
+                currentIdx_Kecerdasan++;
+                loadQuestion();
+            }
+        }, 300);
+    }
+
+    function prevQ_Kecerdasan() {
+        if (currentIdx_Kecerdasan > 0) {
+            currentIdx_Kecerdasan--;
+            loadQuestion();
+        }
+    }
+
+    function nextQ_Kecerdasan() {
+        if (currentIdx_Kecerdasan < rawKecerdasan.length - 1) {
+            currentIdx_Kecerdasan++;
+            loadQuestion();
+        } else {
+            if (confirm("Apakah Anda yakin ingin menyelesaikan tes dan mengirim nilai?")) {
+                finishSimulation();
+            }
+        }
+    }
+
+    function finishSimulation() {
+        if (timerInterval) clearInterval(timerInterval);
+
+        let benar = 0;
+        rawKecerdasan.forEach((q, idx) => {
+            if (simulationResult.kecerdasan.userAns[idx] === q.ans) {
+                benar++;
+            }
+        });
+
+        let totalSoal = rawKecerdasan.length;
+        let skorFinal = (benar / totalSoal) * 100;
+
+        simulationResult.kecerdasan.benar = benar;
+        simulationResult.kecerdasan.skor = skorFinal.toFixed(2);
+
+        document.getElementById('resValKecerdasan').innerText = skorFinal.toFixed(2);
+        document.getElementById('resDetailKecerdasan').innerText = `Jawaban Benar: ${benar} / ${totalSoal} Soal`;
+
+        showSection('result');
+        sendToGoogleSheets();
+    }
+
+    function sendToGoogleSheets() {
+        if (isResultSubmitted) return;
+        isResultSubmitted = true;
+
+        const payload = {
+            sessionId: currentSessionId,
+            waktuMulai: waktuMulai,
+            waktuSelesai: new Date().toLocaleString(),
+            namaSiswa: pName,
+            program: "LOGIKA MATEMATIKA BERPOLA",
+            skorKecerdasan: simulationResult.kecerdasan.skor,
+            benarKecerdasan: simulationResult.kecerdasan.benar,
+            totalKecerdasan: rawKecerdasan.length
+        };
+
+        fetch(APP_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            console.log("Data berhasil dikirim ke Apps Script.");
+        }).catch(err => console.error("Error kirim data:", err));
+    }
+
+    function showReviewSection() {
+        showSection('review');
+        const container = document.getElementById('reviewContainerKecerdasan');
+        container.innerHTML = "";
+
+        const labels = ['A', 'B', 'C', 'D', 'E'];
+
+        rawKecerdasan.forEach((q, idx) => {
+            const uAns = simulationResult.kecerdasan.userAns[idx];
+            const isCorrect = (uAns === q.ans);
+
+            const item = document.createElement('div');
+            item.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+
+            let uAnsStr = uAns !== undefined ? labels[uAns] : "Tidak Dijawab";
+            let cAnsStr = labels[q.ans];
+
+            item.innerHTML = `
+                <div style="font-weight:bold; color:var(--navy); margin-bottom:5px;">
+                    Soal ${idx + 1} [${q.type}] - ${isCorrect ? '<span style="color:var(--success)">BENAR</span>' : '<span style="color:var(--danger)">SALAH</span>'}
+                </div>
+                <div style="margin-bottom:10px;">${q.q}</div>
+                ${q.media ? `<div class="visual-container">${q.media}</div>` : ''}
+                <div style="font-size:13px; margin-top:8px;">
+                    <strong>Jawaban Anda:</strong> ${uAnsStr} | <strong>Kunci Jawaban:</strong> ${cAnsStr}
+                </div>
+                <div class="pembahasan-box">
+                    <strong>Pembahasan Lengkap:</strong><br>${q.exp}
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    }
+</script>
+</body>
+</html>

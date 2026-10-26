@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT LOGIKA MATEMATIKA BERPOLA SERI 4 - PRC - BIMBEL CERDAS NTB</title>
+    
+    <!-- Fonts & Libraries -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root { 
+            --navy: #0b2340; 
+            --gold: #d4a017; 
+            --bg: #f8fafc; 
+            --gray: #f1f5f9; 
+            --danger: #c0392b; 
+        }
+        * { 
+            box-sizing: border-box; 
+        }
+        body { 
+            font-family: 'Inter', 'Segoe UI', sans-serif; 
+            background: var(--bg); 
+            margin: 0; 
+            padding: 0; 
+            color: #1e293b; 
+        }
+
+        /* HEADER MASTER */
+        header { 
+            background: var(--navy); 
+            color: white; 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 4px solid var(--gold); 
+        }
+        .header-title h1 { margin: 0; font-size: 18px; color: #fff; }
+        .header-title p { margin: 3px 0 0; font-size: 11px; color: var(--gold); font-weight: bold; }
+        .timer-badge { font-size: 20px; font-weight: bold; color: var(--gold); font-family: monospace; }
+
+        .container { max-width: 950px; margin: 20px auto; padding: 0 15px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+
+        /* INPUT / LOGIN SECTION */
+        .user-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .user-card input { width: 80%; max-width: 400px; padding: 12px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 8px; text-align: center; margin-top: 15px; outline: none; display: block; margin-left: auto; margin-right: auto; }
+        
+        /* OPTION CARDS */
+        .opt { padding: 12px 16px; margin: 10px 0; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: 0.2s; background: #fff; text-align: left; line-height: 1.5; font-size: 15px; display: flex; align-items: center; gap: 12px; }
+        .opt:hover { background: #f1f5f9; border-color: var(--navy); }
+        .opt.selected { background: #e0f2fe; border-color: var(--navy); font-weight: bold; }
+
+        /* NAVIGASI SOAL GRID */
+        .nav-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; margin-top: 15px; }
+        .nav-item { height: 35px; display: flex; align-items: center; justify-content: center; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; background: #fff; }
+        .nav-item.filled { background: var(--navy); color: white; }
+        .nav-item.active { border: 2px solid var(--gold); background: #fef08a; color: #000; }
+
+        /* BUTTONS */
+        .btn { background: var(--navy); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; text-align: center; display: inline-block; }
+        .btn-gold { background: var(--gold); color: var(--navy); }
+        .btn-green { background: #27ae60; color: white; }
+
+        /* REKAP & RESULT AREA */
+        .final-box { background: var(--navy); color: #fff; padding: 25px; border-radius: 16px; text-align: center; margin-bottom: 25px; }
+        .final-val { font-size: 56px; font-weight: 900; color: var(--gold); margin: 10px 0; }
+
+        /* PEMBAHASAN CONTAINER */
+        .review-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin-bottom: 20px; }
+        .review-item.correct { border-left: 6px solid #27ae60; }
+        .review-item.incorrect { border-left: 6px solid var(--danger); }
+        .pembahasan-box { background: #f1f5f9; padding: 14px; border-radius: 6px; margin-top: 12px; font-size: 14px; border-left: 4px solid var(--gold); line-height: 1.6; }
+
+        /* TABLE VIEW UNTUK MATRIKS ANGKA */
+        .matrix-table { margin: 15px auto; border-collapse: collapse; text-align: center; font-size: 18px; font-weight: bold; }
+        .matrix-table td { border: 2px solid var(--navy); padding: 12px 20px; width: 60px; height: 50px; background: #fff; color: var(--navy); }
+        .matrix-table td.target { background: #fee2e2; color: var(--danger); font-size: 20px; }
+    </style>
+</head>
+<body>
+
+<!-- MASTER HEADER -->
+<header id="masterHeader">
+    <div class="header-title">
+        <h1 id="headerMainTitle">PRC - BIMBEL CERDAS NTB</h1>
+        <p id="headerSubTitle">CAT LOGIKA MATEMATIKA BERPOLA - SERI 3 (TABEL MATRIKS & BARIS KOLOM)</p>
+    </div>
+    <div id="timer" class="timer-badge">60:00</div>
+</header>
+
+<div class="container">
+    <!-- SECTION 1: START / IDENTITAS -->
+    <div id="sec-start" class="user-card">
+        <h2 style="margin:0; color:var(--navy);">IDENTITAS PESERTA SIMULASI CAT MATRIKS ANGKA</h2>
+        <p style="font-size:14px; color:#64748b; margin-top:8px;">Seri 3: Logika Angka Berpola dalam Format Tabel Matriks Baris & Kolom (Standar Seleksi Formal).</p>
+        <input type="text" id="inputNama" placeholder="Masukkan Nama Lengkap Peserta..." autocomplete="off">
+        <br><br>
+        <button class="btn btn-gold" style="font-size: 18px; padding: 15px 40px;" onclick="startFullSimulation()">MULAI SIMULASI CAT</button>
+    </div>
+
+    <!-- SECTION 2: TES MATRIKS ANGKA -->
+    <div id="sec-kecerdasan" style="display:none;">
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <div style="flex:3; min-width:300px;">
+                <div class="card">
+                    <div id="k-q-no" style="font-weight:bold; color:var(--navy); margin-bottom:10px;">Soal 1 dari 50</div>
+                    <div id="k-q-text" style="font-size:15px; line-height:1.6; margin-bottom:15px;"></div>
+                    <div id="k-q-media" style="text-align:center;"></div>
+                    <div id="k-options" style="margin-top:15px;"></div>
+                    <div style="margin-top:25px; display:flex; justify-content:space-between;">
+                        <button class="btn" onclick="prevQ_Kecerdasan()" style="background:#64748b">Sebelumnya</button>
+                        <button class="btn" id="k-btn-next" onclick="nextQ_Kecerdasan()">Selanjutnya</button>
+                    </div>
+                </div>
+            </div>
+            <div style="flex:1; min-width:250px;">
+                <div class="card" style="padding:15px;">
+                    <div style="text-align:center; font-size:12px; font-weight:bold; margin-bottom:10px;">NAVIGASI 50 SOAL SERI 4</div>
+                    <div id="k-navGrid" class="nav-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: HASIL / REKAP AKHIR -->
+    <div id="sec-result" style="display:none;">
+        <div class="card">
+            <div style="text-align:center; border-bottom:2px solid #eee; padding-bottom:15px; margin-bottom:20px;">
+                <h2 style="margin:0; color:var(--navy);">LAPORAN HASIL AKHIR MATRIKS ANGKA</h2>
+                <p style="margin:5px 0 0; color:var(--gold); font-weight:bold;">PERSONA RESEARCH & CONSULTING - WA: 0877 425 5786</p>
+            </div>
+
+            <div id="resNamaPeserta" style="background:#eef6ff; padding:15px; border-radius:12px; margin-bottom:25px; font-weight:bold; font-size:18px; color:var(--navy); text-align:center;">
+                NAMA PESERTA: -
+            </div>
+
+            <div class="final-box">
+                <div>NILAI AKHIR SIMULASI CAT SERI 3</div>
+                <div class="final-val" id="resValKecerdasan">0.00</div>
+                <div style="font-size: 14px; opacity: 0.9;" id="resDetailKecerdasan">Jawaban Benar: 0 / 50 Soal</div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;">
+                <button class="btn btn-green" style="flex:1; padding:15px;" onclick="window.print()">📥 CETAK / SIMPAN PDF</button>
+                <button class="btn btn-gold" style="flex:1; padding:15px;" onclick="showReviewSection()">📖 LIHAT PEMBAHASAN SOAL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: PEMBAHASAN / REVIEW -->
+    <div id="sec-review" style="display:none;">
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:15px; margin-bottom:20px;">
+                <h2 style="margin:0; color:var(--navy);">PEMBAHASAN & EVALUASI 50 SOAL SERI 3</h2>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-green" onclick="window.print()">📥 CETAK PEMBAHASAN</button>
+                    <button class="btn" onclick="showSection('result')">Kembali ke Hasil</button>
+                </div>
+            </div>
+            
+            <div style="text-align:center; margin-bottom:20px; border-bottom:2px solid var(--navy); padding-bottom:10px;">
+                <h3 style="margin:0; color:var(--navy);">DOKUMEN PEMBAHASAN TABEL MATRIKS ANGKA</h3>
+                <p id="reviewNamaPeserta" style="margin:5px 0 0; color:var(--gold); font-weight:bold;">PESERTA: -</p>
+            </div>
+
+            <div id="reviewContainerKecerdasan"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFxmO0ocvr5HqK2WuGyjt7_JeTOcs4vGDg7QZejeiE2QvCP_qkonJcZc5hz9AFW2Vg/exec";
+
+    let currentIdx_Kecerdasan = 0;
+    let timerInterval = null;
+    let timerLeft = 3600; // 60 Menit
+    let pName = "";
+    let isResultSubmitted = false;
+    let currentSessionId = 'SESSION_SERI3_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    let waktuMulai = new Date().toLocaleString();
+
+    let simulationResult = {
+        kecerdasan: { userAns: {}, benar: 0, skor: 0 }
+    };
+
+    function renderTableHtml(matrix, isReview = false) {
+        let html = `<table class="matrix-table" style="${isReview ? 'margin:10px auto; font-size:14px;' : ''}">`;
+        for(let r=0; r<3; r++) {
+            html += "<tr>";
+            for(let c=0; c<3; c++) {
+                let val = matrix[r*3 + c];
+                let cls = (val === "?") ? "target" : "";
+                html += `<td class="${cls}">${val}</td>`;
+            }
+            html += "</tr>";
+        }
+        html += "</table>";
+        return html;
+    }
+
+    // BANK 50 SOAL MATRIKS TABEL ANGKA BERPOLA
+    const rawKecerdasan = [];
+    
+    // 50 Data Soal Matriks Angka Berpola (Baris & Kolom)
+    const dataBank = [
+        { m: [3, 6, 9, 4, 8, 12, 5, 10, "?"], target: "15", opts: ["13", "14", "15", "16", "18"], ans: 2, exp: "Pola Kolom: Kolom 2 adalah 2 kali Kolom 1. Kolom 3 adalah Kolom 1 + Kolom 2 atau kelipatan 3. Baris 3: 5 * 3 = 15." },
+        { m: [2, 4, 8, 3, 9, 27, 4, 16, "?"], target: "64", opts: ["32", "48", "56", "64", "81"], ans: 3, exp: "Pola Baris: Kolom 3 adalah Kolom 2 dikali Kolom 1 (atau pangkat). Baris 3: 4 * 16 = 64 (atau 4^3)." },
+        { m: [12, 4, 3, 24, 6, 4, 35, 7, "?"], target: "5", opts: ["3", "4", "5", "6", "7"], ans: 2, exp: "Pola Baris: Kolom 1 dibagi Kolom 2 sama dengan Kolom 3. Baris 3: 35 / 7 = 5." },
+        { m: [5, 7, 35, 8, 6, 48, 9, 8, "?"], target: "72", opts: ["64", "70", "72", "80", "84"], ans: 2, exp: "Pola Baris: Kolom 1 dikali Kolom 2 sama dengan Kolom 3. Baris 3: 9 * 8 = 72." },
+        { m: [10, 3, 7, 15, 6, 9, 20, 9, "?"], target: "11", opts: ["9", "10", "11", "12", "14"], ans: 2, exp: "Pola Baris: Kolom 3 = Kolom 1 - Kolom 2 + 4, atau Kolom 1 + Kolom 2 - Kolom 3 = konstan. Baris 3: 20 - 9 = 11." },
+        { m: [2, 3, 5, 4, 5, 9, 6, 7, "?"], target: "13", opts: ["11", "12", "13", "14", "15"], ans: 2, exp: "Pola Baris: Kolom 3 = Kolom 1 + Kolom 2. Baris 3: 6 + 7 = 13." },
+        { m: [1, 4, 9, 2, 5, 12, 3, 6, "?"], target: "15", opts: ["13", "14", "15", "16", "18"], ans: 2, exp: "Pola Baris: Kolom 3 = (Kolom 1 + Kolom 2) * 1.5 atau jumlah bertingkat. Baris 3: 3 + 6 + 6 = 15." },
+        { m: [8, 2, 10, 12, 4, 16, 15, 5, "?"], target: "20", opts: ["18", "19", "20", "22", "25"], ans: 2, exp: "Pola Baris: Kolom 3 = Kolom 1 + Kolom 2. Baris 3: 15 + 5 = 20." },
+        { m: [50, 10, 5, 40, 8, 5, 30, 6, "?"], target: "5", opts: ["3", "4", "5", "6", "8"], ans: 2, exp: "Pola Baris: Kolom 1 dibagi Kolom 2 = Kolom 3. Baris 3: 30 / 6 = 5." },
+        { m: [3, 4, 5, 6, 8, 10, 9, 12, "?"], target: "15", opts: ["13", "14", "15", "16", "18"], ans: 2, exp: "Pola Kolom: Kelipatan 3, 4, 5. Baris 3: 3*3=9, 4*3=12, 5*3=15." },
+        { m: [7, 2, 14, 9, 3, 27, 6, 5, "?"], target: "30", opts: ["25", "28", "30", "35", "40"], ans: 2, exp: "Pola Baris: Kolom 1 * Kolom 2 = Kolom 3. Baris 3: 6 * 5 = 30." },
+        { m: [15, 5, 3, 28, 7, 4, 45, 9, "?"], target: "5", opts: ["3", "4", "5", "6", "7"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 45 / 9 = 5." },
+        { m: [11, 22, 33, 14, 28, 42, 17, 34, "?"], target: "51", opts: ["45", "48", "51", "54", "57"], ans: 2, exp: "Pola Kolom: Kolom 2 = 2*K1, Kolom 3 = 3*K1. Baris 3: 17 * 3 = 51." },
+        { m: [4, 5, 20, 6, 7, 42, 8, 9, "?"], target: "72", opts: ["64", "68", "72", "76", "80"], ans: 2, exp: "Pola Baris: Kolom 1 * Kolom 2 = Kolom 3. Baris 3: 8 * 9 = 72." },
+        { m: [25, 5, 20, 36, 6, 30, 49, 7, "?"], target: "42", opts: ["35", "38", "40", "42", "45"], ans: 3, exp: "Pola Baris: Kolom 1 - Kolom 2 = Kolom 3 (dengan K1 kuadrat K2). Baris 3: 49 - 7 = 42." },
+        { m: [2, 8, 4, 3, 27, 9, 4, 64, "?"], target: "16", opts: ["12", "14", "16", "18", "20"], ans: 2, exp: "Pola Baris: Kolom 2 = Kolom 1 pangkat Kolom 3, atau sebaliknya. Baris 3: 4^3 = 64, jadi 64 / 4 = 16." },
+        { m: [10, 20, 30, 15, 25, 40, 20, 30, "?"], target: "50", opts: ["40", "45", "50", "55", "60"], ans: 2, exp: "Pola Baris: Kolom 1 + Kolom 2 = Kolom 3. Baris 3: 20 + 30 = 50." },
+        { m: [9, 3, 6, 15, 5, 10, 24, 8, "?"], target: "16", opts: ["12", "14", "16", "18", "20"], ans: 2, exp: "Pola Baris: Kolom 1 - Kolom 2 = Kolom 3. Baris 3: 24 - 8 = 16." },
+        { m: [6, 6, 36, 7, 7, 49, 8, 8, "?"], target: "64", opts: ["56", "60", "64", "72", "81"], ans: 2, exp: "Pola Baris: Kolom 1 * Kolom 2 = Kolom 3. Baris 3: 8 * 8 = 64." },
+        { m: [18, 9, 2, 24, 8, 3, 30, 6, "?"], target: "5", opts: ["3", "4", "5", "6", "7"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 30 / 6 = 5." },
+        { m: [1, 2, 3, 4, 5, 6, 7, 8, "?"], target: "9", opts: ["7", "8", "9", "10", "11"], ans: 2, exp: "Pola Baris: Urutan bilangan berurutan +1. Baris 3: 7, 8, 9." },
+        { m: [13, 26, 39, 14, 28, 42, 15, 30, "?"], target: "45", opts: ["40", "42", "45", "48", "50"], ans: 2, exp: "Pola Kolom: Kelipatan 15. Baris 3: 15, 30, 45." },
+        { m: [100, 50, 2, 80, 40, 2, 60, 20, "?"], target: "3", opts: ["2", "2.5", "3", "3.5", "4"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 60 / 20 = 3." },
+        { m: [3, 9, 81, 2, 4, 16, 5, 5, "?"], target: "25", opts: ["15", "20", "25", "30", "35"], ans: 2, exp: "Pola Baris: Kolom 2 kuadrat = Kolom 3. Baris 3: 5^2 = 25." },
+        { m: [2, 3, 10, 4, 5, 26, 6, 7, "?"], target: "50", opts: ["42", "46", "50", "54", "58"], ans: 2, exp: "Pola Baris: (Kolom 1 * Kolom 2) + 4. Baris 3: (6 * 7) + 8 = 50." },
+        { m: [14, 7, 2, 22, 11, 2, 36, 9, "?"], target: "4", opts: ["2", "3", "4", "5", "6"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 36 / 9 = 4." },
+        { m: [5, 10, 15, 7, 14, 21, 9, 18, "?"], target: "27", opts: ["23", "25", "27", "30", "32"], ans: 2, exp: "Pola Kolom: Kelipatan 9. Baris 3: 9, 18, 27." },
+        { m: [8, 4, 32, 9, 5, 45, 11, 6, "?"], target: "66", opts: ["56", "60", "66", "70", "72"], ans: 2, exp: "Pola Baris: Kolom 1 * Kolom 2 = Kolom 3. Baris 3: 11 * 6 = 66." },
+        { m: [19, 4, 15, 25, 9, 16, 31, 11, "?"], target: "20", opts: ["18", "19", "20", "22", "24"], ans: 2, exp: "Pola Baris: Kolom 1 - Kolom 2 = Kolom 3. Baris 3: 31 - 11 = 20." },
+        { m: [2, 4, 16, 3, 9, 81, 4, 4, "?"], target: "256", opts: ["128", "192", "256", "320", "512"], ans: 2, exp: "Pola Baris: Kolom 2 pangkat Kolom 1 = Kolom 3. Baris 3: 4 pangkat 4 = 256." },
+        { m: [4, 8, 12, 6, 12, 18, 9, 18, "?"], target: "27", opts: ["21", "24", "27", "30", "33"], ans: 2, exp: "Pola Kolom: Kelipatan 9. Baris 3: 9, 18, 27." },
+        { m: [11, 12, 23, 13, 14, 27, 17, 19, "?"], target: "36", opts: ["32", "34", "36", "38", "40"], ans: 1, exp: "Pola Baris: Kolom 1 + Kolom 2 = Kolom 3. Baris 3: 17 + 19 = 36." },
+        { m: [40, 8, 5, 56, 7, 8, 72, 9, "?"], target: "8", opts: ["6", "7", "8", "9", "10"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 72 / 9 = 8." },
+        { m: [1, 3, 9, 2, 4, 16, 3, 5, "?"], target: "25", opts: ["15", "20", "25", "30", "35"], ans: 2, exp: "Pola Baris: Kolom 2 kuadrat = Kolom 3. Baris 3: 5^2 = 25." },
+        { m: [6, 12, 18, 8, 16, 24, 12, 24, "?"], target: "36", opts: ["30", "32", "36", "40", "42"], ans: 2, exp: "Pola Kolom: Kelipatan 12. Baris 3: 12, 24, 36." },
+        { m: [21, 3, 7, 32, 4, 8, 45, 5, "?"], target: "9", opts: ["7", "8", "9", "10", "11"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 45 / 5 = 9." },
+        { m: [5, 25, 30, 7, 49, 56, 9, 81, "?"], target: "90", opts: ["82", "85", "90", "95", "100"], ans: 2, exp: "Pola Baris: Kolom 1 + Kolom 2 = Kolom 3. Baris 3: 9 + 81 = 90." },
+        { m: [10, 2, 8, 15, 3, 12, 22, 5, "?"], target: "17", opts: ["15", "16", "17", "18", "19"], ans: 2, exp: "Pola Baris: Kolom 1 - Kolom 2 = Kolom 3. Baris 3: 22 - 5 = 17." },
+        { m: [3, 3, 9, 5, 5, 25, 11, 11, "?"], target: "121", opts: ["100", "110", "121", "132", "144"], ans: 2, exp: "Pola Baris: Kolom 1 * Kolom 2 = Kolom 3. Baris 3: 11 * 11 = 121." },
+        { m: [16, 4, 4, 36, 6, 6, 81, 9, "?"], target: "9", opts: ["7", "8", "9", "10", "12"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 81 / 9 = 9." },
+        { m: [2, 5, 7, 4, 7, 11, 6, 9, "?"], target: "15", opts: ["13", "14", "15", "16", "17"], ans: 2, exp: "Pola Baris: Kolom 1 + Kolom 2 = Kolom 3. Baris 3: 6 + 9 = 15." },
+        { m: [10, 5, 50, 12, 6, 72, 14, 7, "?"], target: "98", opts: ["84", "91", "98", "105", "112"], ans: 2, exp: "Pola Baris: Kolom 1 * Kolom 2 = Kolom 3. Baris 3: 14 * 7 = 98." },
+        { m: [33, 11, 3, 44, 11, 4, 55, 11, "?"], target: "5", opts: ["3", "4", "5", "6", "7"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 55 / 11 = 5." },
+        { m: [7, 8, 56, 9, 10, 90, 11, 12, "?"], target: "132", opts: ["120", "126", "132", "140", "150"], ans: 2, exp: "Pola Baris: Kolom 1 * Kolom 2 = Kolom 3. Baris 3: 11 * 12 = 132." },
+        { m: [20, 15, 5, 30, 22, 8, 40, 27, "?"], target: "13", opts: ["11", "12", "13", "14", "15"], ans: 2, exp: "Pola Baris: Kolom 1 - Kolom 2 = Kolom 3. Baris 3: 40 - 27 = 13." },
+        { m: [2, 8, 10, 3, 12, 15, 5, 20, "?"], target: "25", opts: ["21", "23", "25", "27", "30"], ans: 2, exp: "Pola Baris: Kolom 1 + Kolom 2 = Kolom 3. Baris 3: 5 + 20 = 25." },
+        { m: [54, 9, 6, 72, 8, 9, 90, 10, "?"], target: "9", opts: ["7", "8", "9", "10", "12"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 90 / 10 = 9." },
+        { m: [4, 16, 64, 5, 25, 125, 6, 36, "?"], target: "216", opts: ["196", "204", "216", "224", "240"], ans: 2, exp: "Pola Kolom: Kolom 3 adalah pangkat 3 dari Kolom 1. Baris 3: 6^3 = 216." },
+        { m: [13, 17, 30, 14, 18, 32, 15, 19, "?"], target: "34", opts: ["32", "33", "34", "35", "36"], ans: 2, exp: "Pola Baris: Kolom 1 + Kolom 2 = Kolom 3. Baris 3: 15 + 19 = 34." },
+        { m: [90, 9, 10, 80, 8, 10, 70, 7, "?"], target: "10", opts: ["8", "9", "10", "11", "12"], ans: 2, exp: "Pola Baris: Kolom 1 / Kolom 2 = Kolom 3. Baris 3: 70 / 7 = 10." }
+    ];
+
+    dataBank.forEach((d, i) => {
+        rawKecerdasan.push({
+            type: "Matrix Tabel Angka",
+            title: `Soal Matriks Tabel ${i+1}`,
+            q: `Perhatikan pola angka di dalam tabel matriks berikut. Tentukan angka yang tepat untuk mengisi sel tanda tanya (?)!`,
+            media: renderTableHtml(d.m),
+            opts: d.opts,
+            ans: d.ans,
+            exp: d.exp,
+            matrixData: d.m
+        });
+    });
+
+    // FUNCTIONS APLIKASI CAT
+    function startFullSimulation() {
+        const nameInput = document.getElementById('inputNama').value.trim();
+        if(!nameInput) {
+            alert('Silakan masukkan nama lengkap Anda terlebih dahulu!');
+            return;
+        }
+        pName = nameInput;
+        document.getElementById('sec-start').style.display = 'none';
+        document.getElementById('sec-kecerdasan').style.display = 'block';
+        
+        buildNavGrid();
+        loadQuestion_Kecerdasan();
+        startTimer();
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            timerLeft--;
+            let m = Math.floor(timerLeft / 60);
+            let s = timerLeft % 60;
+            document.getElementById('timer').innerText = `${m < 10 ? '0':''}${m}:${s < 10 ? '0':''}${s}`;
+            if(timerLeft <= 0) {
+                clearInterval(timerInterval);
+                finishSimulation();
+            }
+        }, 1000);
+    }
+
+    function buildNavGrid() {
+        const grid = document.getElementById('k-navGrid');
+        grid.innerHTML = '';
+        for(let i=0; i<rawKecerdasan.length; i++) {
+            let div = document.createElement('div');
+            div.className = 'nav-item';
+            div.id = `nav-${i}`;
+            div.innerText = i + 1;
+            div.onclick = () => goToQuestion_Kecerdasan(i);
+            grid.appendChild(div);
+        }
+        updateNavGridState();
+    }
+
+    function updateNavGridState() {
+        for(let i=0; i<rawKecerdasan.length; i++) {
+            let item = document.getElementById(`nav-${i}`);
+            if(!item) continue;
+            item.className = 'nav-item';
+            if(simulationResult.kecerdasan.userAns[i] !== undefined) {
+                item.classList.add('filled');
+            }
+            if(i === currentIdx_Kecerdasan) {
+                item.classList.add('active');
+            }
+        }
+    }
+
+    function loadQuestion_Kecerdasan() {
+        let qData = rawKecerdasan[currentIdx_Kecerdasan];
+        document.getElementById('k-q-no').innerText = `Soal ${currentIdx_Kecerdasan + 1} dari 50 (${qData.title})`;
+        document.getElementById('k-q-text').innerText = qData.q;
+        document.getElementById('k-q-media').innerHTML = qData.media;
+
+        let optContainer = document.getElementById('k-options');
+        optContainer.innerHTML = '';
+        
+        qData.opts.forEach((optText, idx) => {
+            let optDiv = document.createElement('div');
+            optDiv.className = 'opt';
+            if(simulationResult.kecerdasan.userAns[currentIdx_Kecerdasan] === idx) {
+                optDiv.classList.add('selected');
+            }
+            let optLetter = String.fromCharCode(65 + idx);
+            optDiv.innerHTML = `<b style="min-width:24px;">${optLetter}.</b> <div>${optText}</div>`;
+            optDiv.onclick = () => selectAnswer_Kecerdasan(idx);
+            optContainer.appendChild(optDiv);
+        });
+
+        let nextBtn = document.getElementById('k-btn-next');
+        if(currentIdx_Kecerdasan === rawKecerdasan.length - 1) {
+            nextBtn.innerText = "Selesai & Kumpul";
+            nextBtn.className = "btn btn-green";
+        } else {
+            nextBtn.innerText = "Selanjutnya";
+            nextBtn.className = "btn";
+        }
+        updateNavGridState();
+    }
+
+    function selectAnswer_Kecerdasan(optIdx) {
+        simulationResult.kecerdasan.userAns[currentIdx_Kecerdasan] = optIdx;
+        loadQuestion_Kecerdasan();
+        
+        // AUTO NEXT IMPLEMENTATION
+        setTimeout(() => {
+            if(currentIdx_Kecerdasan < rawKecerdasan.length - 1) {
+                currentIdx_Kecerdasan++;
+                loadQuestion_Kecerdasan();
+            } else {
+                finishSimulation();
+            }
+        }, 200);
+    }
+
+    function prevQ_Kecerdasan() {
+        if(currentIdx_Kecerdasan > 0) {
+            currentIdx_Kecerdasan--;
+            loadQuestion_Kecerdasan();
+        }
+    }
+
+    function nextQ_Kecerdasan() {
+        if(currentIdx_Kecerdasan < rawKecerdasan.length - 1) {
+            currentIdx_Kecerdasan++;
+            loadQuestion_Kecerdasan();
+        } else {
+            if(confirm("Apakah Anda yakin ingin menyelesaikan dan mengumpulkan jawaban tes?")) {
+                finishSimulation();
+            }
+        }
+    }
+
+    function goToQuestion_Kecerdasan(idx) {
+        currentIdx_Kecerdasan = idx;
+        loadQuestion_Kecerdasan();
+    }
+
+    function finishSimulation() {
+        if(isResultSubmitted) return;
+        isResultSubmitted = true;
+        clearInterval(timerInterval);
+        
+        let benar = 0;
+        rawKecerdasan.forEach((q, idx) => {
+            if(simulationResult.kecerdasan.userAns[idx] === q.ans) {
+                benar++;
+            }
+        });
+
+        simulationResult.kecerdasan.benar = benar;
+        simulationResult.kecerdasan.skor = (benar / rawKecerdasan.length) * 100;
+
+        document.getElementById('sec-kecerdasan').style.display = 'none';
+        document.getElementById('sec-result').style.display = 'block';
+        
+        document.getElementById('resNamaPeserta').innerText = `NAMA PESERTA: ${pName}`;
+        document.getElementById('resValKecerdasan').innerText = simulationResult.kecerdasan.skor.toFixed(2);
+        document.getElementById('resDetailKecerdasan').innerText = `Jawaban Benar: ${benar} dari ${rawKecerdasan.length} Soal`;
+
+        // KIRIM DATA KE GOOGLE APPS SCRIPT
+        let waktuSelesai = new Date().toLocaleString();
+        let durasiDetik = 3600 - timerLeft;
+        let payload = {
+            sessionId: currentSessionId,
+            namaSiswa: pName,
+            program: "UMUM",
+            namaTryout: "CAT LOGIKA MATEMATIKA SERI 3 (TABEL MATRIKS)",
+            tanggal: new Date().toLocaleDateString(),
+            waktuMulai: waktuMulai,
+            waktuSelesai: waktuSelesai,
+            durasi: Math.floor(durasiDetik / 60) + " Menit",
+            kecerdasan: simulationResult.kecerdasan.skor.toFixed(2),
+            kepribadian: "",
+            kecermatan: "",
+            tiu: "",
+            twk: "",
+            tkp: "",
+            pengetahuanUmum: "",
+            nilaiAkhir: simulationResult.kecerdasan.skor.toFixed(2)
+        };
+
+        fetch(APP_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        }).catch(err => console.error("Error submitting data:", err));
+    }
+
+    function showSection(sec) {
+        document.getElementById('sec-result').style.display = sec === 'result' ? 'block' : 'none';
+        document.getElementById('sec-review').style.display = sec === 'review' ? 'block' : 'none';
+    }
+
+    function showReviewSection() {
+        document.getElementById('sec-result').style.display = 'none';
+        document.getElementById('sec-review').style.display = 'block';
+        document.getElementById('reviewNamaPeserta').innerText = `PESERTA: ${pName}`;
+
+        let container = document.getElementById('reviewContainerKecerdasan');
+        container.innerHTML = '';
+
+        rawKecerdasan.forEach((q, idx) => {
+            let uAns = simulationResult.kecerdasan.userAns[idx];
+            let isCorrect = (uAns === q.ans);
+            let itemDiv = document.createElement('div');
+            itemDiv.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+            
+            let uAnsStr = uAns !== undefined ? String.fromCharCode(65 + uAns) + ". " + q.opts[uAns] : "Tidak Dijawab";
+            let trueAnsStr = String.fromCharCode(65 + q.ans) + ". " + q.opts[q.ans];
+
+            let matrixMini = renderTableHtml(q.matrixData, true);
+
+            itemDiv.innerHTML = `
+                <div style="font-weight:bold; color:var(--navy); margin-bottom:5px;">Soal No. ${idx + 1}: ${q.title}</div>
+                <div style="font-size:15px; margin-bottom:10px;">${q.q}</div>
+                <div style="margin-bottom:10px;">${matrixMini}</div>
+                <div style="font-size:14px; margin-bottom:6px;">
+                    <b>Jawaban Anda:</b> <span style="color:${isCorrect ? '#27ae60':'var(--danger)'}; font-weight:bold;">${uAnsStr}</span> | 
+                    <b>Kunci Jawaban:</b> <span style="color:#27ae60; font-weight:bold;">${trueAnsStr}</span>
+                </div>
+                <div class="pembahasan-box">
+                    <b>Pembahasan:</b> ${q.exp}
+                </div>
+            `;
+            container.appendChild(itemDiv);
+        });
+    }
+</script>
+</body>
+</html>
